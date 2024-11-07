@@ -32,7 +32,7 @@ class authController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        if (!$user || !Hash::match ($request->password, $user->password)) {
+        if (!$user || !Hash::check ($request->password, $user->password)) {
              return[
                 'errors' =>[
                     'email' => ['The provided credentials are incorrect']

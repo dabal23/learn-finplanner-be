@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Budget extends Model
 {
     protected $fillable = [
-        'name','amount'
+        'name','amount','category_id'
     ];
 
     public function user(){

@@ -47,11 +47,11 @@ class User extends Authenticatable
         ];
     }
 
-    public function budget(){
-        return $this->hasMany(budget::class);
+    public function budgets(){
+        return $this->hasMany(Budget::class);
     }
 
-    public function income_record(){
+    public function income_records(){
         return $this->hasMany(income_record::class);
     }
 

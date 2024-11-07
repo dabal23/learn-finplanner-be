@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     protected $fillable =[
-        'name','type'
+        'name','type','note'
     ];
 
     public function spending_records(){
