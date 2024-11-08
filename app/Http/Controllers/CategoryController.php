@@ -28,6 +28,8 @@ class CategoryController extends Controller
         'note'=>'nullable'
        ]); 
 
+       $field['note'] = $field['note'] ?? '';
+       
        $category = Category::create($field);
        return ['category'=>$category];
     }

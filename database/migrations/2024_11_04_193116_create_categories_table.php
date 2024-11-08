@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('type');
-            $table->text('note');
+            $table->text('note')->nullable()->change();
         });
     }
 

@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('spending_records', function (Blueprint $table) {
+        Schema::create('coba_ajas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('category_id')->constrained(); 
-            $table->string('name');
+            $table->foreignId('category_id')->constrained();
+            $table->text('name');
             $table->float('price');
             $table->text('note')->nullable();
         });
-        
     }
 
     /**
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('spending_records');
+        Schema::dropIfExists('coba_ajas');
     }
 };

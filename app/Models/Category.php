@@ -19,6 +19,6 @@ class Category extends Model
     }
 
     public function Income_records(){
-        return $this->hasMany(Income_record::class);
+        return $this->hasMany(IncomeRecord::class);
     }
 }

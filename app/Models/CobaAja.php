@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class spending_records extends Model
+class CobaAja extends Model
 {
     protected $fillable = [
-        'name','price','note','category_id'
+        'name','category_id','price','note'
     ];
 
     public function user(){

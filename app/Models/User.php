@@ -58,4 +58,12 @@ class User extends Authenticatable
     public function spending_records(){
         return $this->hasMany(spending_records::class);
     }
+
+    public function spendingRecords(){
+        return $this->hasMany(SpendingRecord::class);
+    }
+
+    public function CobaAjas() {
+        return $this->hasMany(CobaAja::class);
+    }
 }
