@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Income_record extends Model
 {
     protected $fillable = [
-        'name','amount','note'
+        'name','amount','note','category_id'
     ];
 
     public function user(){

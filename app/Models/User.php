@@ -51,8 +51,8 @@ class User extends Authenticatable
         return $this->hasMany(Budget::class);
     }
 
-    public function income_records(){
-        return $this->hasMany(income_record::class);
+    public function Income_records(){
+        return $this->hasMany(Income_record::class);
     }
 
     public function spending_records(){

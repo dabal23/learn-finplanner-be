@@ -15,10 +15,10 @@ class Category extends Model
     }
 
     public function budget(){
-        return $this->hasMany(budget::class);
+        return $this->hasMany(Budget::class);
     }
 
-    public function Income_record(){
+    public function Income_records(){
         return $this->hasMany(Income_record::class);
     }
 }

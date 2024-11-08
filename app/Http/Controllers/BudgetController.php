@@ -2,23 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Log;
-use App\Http\Requests\StoreBudgetRequest;
+
 use App\Http\Requests\UpdateBudgetRequest;
 use App\Models\Budget;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controllers\HasMiddleware;
-use Illuminate\Routing\Controllers\Middleware;
 
-class BudgetController extends Controller implements HasMiddleware
+
+class BudgetController extends Controller 
 {
-    public static function middleware()
-    {
-        return [
-            new Middleware('auth:sanctum')
-        ];
-    }
-
 
     /**
      * Display a listing of the resource.
@@ -33,35 +24,16 @@ class BudgetController extends Controller implements HasMiddleware
      */
     public function store(Request $request)
     {
-        // $field = $request->validate([
-        //     'name'=>'required',
-        //     'amount'=>'required',
-        //     'category_id'=>'required|exists:categories,id'
-        // ]);
+        $field = $request->validate([
+            'name'=>'required',
+            'amount'=>'required',
+            'category_id'=>'required|exists:categories,id'
+        ]);
 
-        // Log::debug('Validated Data:', $field);  // Log the validated data
 
-        // $budget = $request->user()->budgets()->create($field);
+        $budget = $request->user()->budgets()->create($field);
 
-        // return ['data'=> $budget, 'user' => $budget->user];
-        // return response()->json(['data' => $budget, 'user' => $budget->user]);
-        try {
-            $field = $request->validate([
-                'name' => 'required',
-                'amount' => 'required',
-                'category_id' => 'required|exists:categories,id'
-            ]);
-    
-            Log::debug('Validated Data:', $field);
-    
-            $budget = $request->user()->budgets()->create($field);
-    
-            return response()->json(['data' => $budget, 'user' => $budget->user]);
-    
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            Log::error('Validation failed', ['errors' => $e->errors()]);
-            return response()->json(['errors' => $e->errors()], 422);
-        }
+        return ['data'=> $budget, 'user' => $budget->user];
     }
 
     /**
@@ -69,22 +41,42 @@ class BudgetController extends Controller implements HasMiddleware
      */
     public function show(Budget $budget)
     {
-        //
+        return ['budget' => $budget, 'user' => $budget->user];
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBudgetRequest $request, Budget $budget)
+    public function update(Request $request, Budget $budget)
     {
-        //
+        // $budget = $request->user()->budgets()->findOrFail($id);
+        
+        if($budget->user_id !== $request->user()->id){
+            abort(403, 'Unauthorized action');
+        }
+
+        $field = $request->validate([
+            'name'=>'required',
+            'amount'=>'required',
+            'category_id'=>'required|exists:categories,id'
+        ]);
+
+        $budget->update($field);
+
+        return ['data'=>$budget, 'user'=>$budget->user];
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Budget $budget)
+    public function destroy(Request $request, Budget $budget)
     {
-        //
+        if($budget->user_id !== $request->user()->id){
+            abort(403, 'Unauthorized action');
+        }
+
+        $budget->delete();
+
+        return ['message'=>'data deleted successfully'];
     }
 }
