@@ -1,0 +1,11 @@
+[90m= [39m[34;4mApp\Models\Income_record[39;24m {#6178
+    [34mid[39m: [35m1[39m,
+    [34mcreated_at[39m: "[32m2024-11-08 01:27:57[39m",
+    [34mupdated_at[39m: "[32m2024-11-08 01:27:57[39m",
+    [34muser_id[39m: [35m1[39m,
+    [34mcategory_id[39m: [35m1[39m,
+    [34mname[39m: "[32mnasi lemak[39m",
+    [34mamount[39m: [33m5.0[39m,
+    [34mnote[39m: "[32menak[39m",
+  }
+

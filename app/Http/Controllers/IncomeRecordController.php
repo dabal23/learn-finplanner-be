@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreIncome_recordRequest;
 use App\Http\Requests\UpdateIncome_recordRequest;
 use App\Models\Income_record;
+use App\Models\IncomeRecord;
 use Illuminate\Http\Request;
 
 class IncomeRecordController extends Controller
@@ -14,7 +15,7 @@ class IncomeRecordController extends Controller
      */
     public function index()
     {
-        return Income_record::with('user')->latest()->get();
+        return IncomeRecord::with('user')->latest()->get();
     }
 
     /**
@@ -29,7 +30,7 @@ class IncomeRecordController extends Controller
             'note'=>'nullable|string'
         ]);
 
-        $income = $request->user()->Income_records()->create($field);
+        $income = $request->user()->IncomeRecords()->create($field);
 
         return ['income'=>$income, 'user'=>$income->user];
     }
@@ -37,15 +38,15 @@ class IncomeRecordController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Income_record $income_record)
+    public function show(IncomeRecord $incomeRecord)
     {
-        return ['income'=>$income_record, 'user'=>$income_record->user];
+        return ['income' => $incomeRecord, 'user' => $incomeRecord->user];
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateIncome_recordRequest $request, Income_record $income_record)
+    public function update(UpdateIncome_recordRequest $request, IncomeRecord $income_record)
     {
         //
     }
@@ -53,7 +54,7 @@ class IncomeRecordController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Income_record $income_record)
+    public function destroy(IncomeRecord $income_record)
     {
         //
     }
